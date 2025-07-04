@@ -1,46 +1,80 @@
 # Edge Detection
 
-This work was initially developed during the Computational Vision discipline of Professor Aldo von Wangenheim at the Postgraduate Program in Computer Science (PPGCC) at the Federal University of Santa Catarina (UFSC) in the second semester of 2001. In the discipline I implemented a program that performed the detection of edges in an image using an Artificial Neural Network with Backpropagation learning.
+Edge Detection is a program for detecting edges in images, implementing several classic algorithms (Roberts, Sobel, etc.), as well as neural network approaches and algorithms proposed by the author. The project allows visual and runtime comparison of the efficiency of these methods.
 
-Link of work in the discipline: [https://www.inf.ufsc.br/~aldo.vw/visao/2001/saulo/]
+## Project Background
 
-Later, in 2005, during my doctorate in the Post-Graduate Program in Automation and Systems Engineering (PPGEAS) at the same university, I suggested another algorithm for edge detection that used only conditionals (single and double). I wrote an article with the help of my doctoral colleague Rui Jorge Tramontin entitled "Proposal for Optimization of Edge Detection Algorithms in Images" which was accepted as a Poster for presentation at the "4th International Information and Telecommunication Technologies Symposium" in 2005.
+This work was initially developed during the Computational Vision course of Professor Aldo von Wangenheim at the Postgraduate Program in Computer Science (PPGCC) at the Federal University of Santa Catarina (UFSC) in the second semester of 2001. In the course, I implemented a program that performed edge detection in an image using an Artificial Neural Network with Backpropagation learning.
+
+Link to the original course work: [https://www.inf.ufsc.br/~aldo.vw/visao/2001/saulo/]
+
+Later, in 2005, during my doctorate in the Postgraduate Program in Automation and Systems Engineering (PPGEAS) at the same university, I proposed another algorithm for edge detection that used only conditionals (single and double). I wrote an article with the help of my doctoral colleague Rui Jorge Tramontin entitled "Proposal for Optimization of Edge Detection Algorithms in Images," which was accepted as a poster for presentation at the "4th International Information and Telecommunication Technologies Symposium" in 2005.
 
 ![Edge Detection](doc/edge_detection.png)
 
-For the article, I implemented the Roberts (and variant), Sobel (and variant) edge detection techniques, I used the edge detection by Neural Network that I had already implemented in Professor Aldo's course, I has implemented the algorithm using only one perceptron and the algorithms and I proposed of Single Conditional and Double Conditional. For the article, a visual and execution time comparison of the presented algorithms was made.
+For the article, I implemented the Roberts (and variant) and Sobel (and variant) edge detection techniques, used the neural network edge detection already implemented in Professor Aldo's course, implemented the algorithm using only one perceptron, and proposed the Single Conditional and Double Conditional algorithms. The article presents a visual and runtime comparison of the algorithms.
 
-The paper and poster presented are in the doc folder.
+The paper and poster presented are in the `doc` folder.
 
-## Execution Runtime Comparison
+## Installation
 
-The results presented here are from the time of writing the article.
+Make sure you have `clang++`, `make`, `libsdl2-dev`, and `libsdl2-image-dev` installed on your system.
+
+To build the project, run:
+
+```sh
+make
+```
+
+## Usage
+
+To run the edge detection program:
+
+```sh
+./edge <image_file> <algorithm>
+```
+
+To train the perceptron network:
+
+```sh
+./train
+```
+
+Check the documentation or source code for details on command-line parameters and available algorithms.
+
+## Runtime Comparison
+
+The results below are from the time the article was written.
 
 ### Runtime Environment
 
-* Computer Pentium IV 3GHz,  RAM 1GB
-* Operationg System Linux
-* Programming Language C
-* Original image resolution 2048x2560 pixels
-* Execution time result at: October 05, 2005
+* Computer: Pentium IV 3GHz, 1GB RAM
+* Operating System: Linux
+* Programming Language: C
+* Original image resolution: 2048x2560 pixels
+* Execution time measured on: October 05, 2005
 
 ### Runtime Results
 
-| Algorithm  |   1o  |   2o  |   3o  | Average|
-| :--------- | ----: | ----: | ----: | -----: |
-| Roberts    |  0.60 |  0.60 |  0.60 |  0.60  |
-| RobertsAbs |  0.10 |  0.09 |  0.10 |  0.09  |
-| Sobel      |  0.64 |  0.64 |  0.65 |  0.64  |
-| SobelAbs   |  0.15 |  0.15 |  0.16 |  0.15  |
-| Backprop   | 19.39 | 19.49 | 19.48 | 19.48  |
-| Perceptron |  1.05 |  1.06 |  1.05 |  1.05  |
-| If         |  0.06 |  0.06 |  0.06 |  0.06  |
-| Double If  |  0.08 |  0.08 |  0.08 |  0.08  |
+| Algorithm   |   1st  |   2nd |   3rd | Average |
+| :---------- | -----: | ----: | ----: | ------: |
+| Roberts     |  0.60  | 0.60  | 0.60  |  0.60   |
+| RobertsAbs  |  0.10  | 0.09  | 0.10  |  0.09   |
+| Sobel       |  0.64  | 0.64  | 0.65  |  0.64   |
+| SobelAbs    |  0.15  | 0.15  | 0.16  |  0.15   |
+| Backprop    | 19.39  |19.49  |19.48  | 19.48   |
+| Perceptron  |  1.05  | 1.06  | 1.05  |  1.05   |
+| If          |  0.06  | 0.06  | 0.06  |  0.06   |
+| Double If   |  0.08  | 0.08  | 0.08  |  0.08   |
 
 ## Considerations and Modifications
 
-* The codes were developed in C using allegro library and could only work with BMP images. To publish to github, I made some recent changes (June 10, 2021).
-* To use a Multilayer Perceptron with Backpropagation, at the time I used QwikNet V2.23 software that generates code in C to run the network. As much as I have my own implementations of Artificial Neural Networks Multilayer Perceptrons today, for this program I keep the same resource used at the time.
-* I switched to Simple Direct Layer 2 (SDL2) library to be able to work with other types of images;
-* Each filter was coded in a separate program and a lot of code was rewritten. I put all filters in a single program, selecting the filter by parameter via the command line.
-* I changed the photo from the time to a current one and "much prettier" to be used in the tests.
+* The original code was developed in C using the Allegro library and could only work with BMP images. For publishing on GitHub, I made some recent changes (June 10, 2021).
+* To use a Multilayer Perceptron with Backpropagation, I used QwikNet V2.23 software at the time, which generates C code to run the network. Although I have my own implementations of Multilayer Perceptron Artificial Neural Networks today, for this program I kept the same resource used at the time.
+* I switched to the Simple DirectMedia Layer 2 (SDL2) library to support other image formats.
+* Each filter was originally coded in a separate program and much code was rewritten. I unified all filters into a single program, selecting the filter via command-line parameter.
+* I updated the test image to a more recent and "much prettier" one.
+
+## License
+
+[Specify your license here, e.g.,
